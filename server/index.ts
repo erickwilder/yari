@@ -14,13 +14,13 @@ const {
   renderContributorsTxt,
 } = require("../build");
 const { findDocumentTranslations } = require("../content/translations");
-const {
+import {
   CONTENT_ROOT,
   Document,
   Redirect,
   Image,
   CONTENT_TRANSLATED_ROOT,
-} = require("../content");
+} from "../content";
 // eslint-disable-next-line node/no-missing-require
 const { renderHTML } = require("../ssr/dist/main");
 const { CSP_VALUE, DEFAULT_LOCALE } = require("../libs/constants");
@@ -40,7 +40,7 @@ const { router: translationsRouter } = require("./translations");
 const { staticMiddlewares, originRequestMiddleware } = require("./middlewares");
 const { getRoot } = require("../content/utils");
 
-async function buildDocumentFromURL(url) {
+async function buildDocumentFromURL(url: string) {
   const document = Document.findByURL(url);
   if (!document) {
     return null;

@@ -1,3 +1,5 @@
+import { Doc } from "../client/src/document/types";
+
 const fs = require("fs");
 const path = require("path");
 
@@ -43,8 +45,13 @@ const PORT = parseInt(process.env.SERVER_PORT || "5042");
 // will include very rarely used URIs.
 const MAX_GOOGLE_ANALYTICS_URIS = 20000;
 
+interface Options {
+  v?: boolean;
+  verbose?: boolean;
+}
+
 function tryOrExit(f) {
-  return async ({ options = {}, ...args }) => {
+  return async ({ options = {}, ...args }: { options: Options }) => {
     try {
       await f({ options, ...args });
     } catch (error) {
@@ -296,7 +303,7 @@ program
       if (!document) {
         throw new Error(`Slug ${slug} does not exist for ${locale}`);
       }
-      const { doc } = await buildDocument(document);
+      const { doc }: { doc: Doc } = await buildDocument(document);
 
       const flaws = Object.values(doc.flaws || {})
         .map((a) => a.length || 0)
@@ -522,7 +529,7 @@ program
       if (!document) {
         throw new Error(`Slug ${slug} does not exist for ${locale}`);
       }
-      const { doc } = await buildDocument(document, {
+      const { doc }: { doc: Doc } = await buildDocument(document, {
         fixFlaws: true,
         fixFlawsDryRun: true,
       });
