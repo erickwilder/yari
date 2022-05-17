@@ -113,4 +113,4 @@ function parseFlawLevels(flawChecks) {
   return checked;
 }
 
-module.exports = options;
+export default options;

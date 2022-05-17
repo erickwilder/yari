@@ -49,15 +49,14 @@ const originRequest = (req, res, next) => {
   }
 };
 
-module.exports = {
-  staticMiddlewares: [
-    ...devMiddlewares,
-    slugRewrite,
-    express.static(STATIC_ROOT, {
-      setHeaders: (res) => {
-        res.setHeader("Content-Security-Policy", CSP_VALUE);
-      },
-    }),
-  ],
-  originRequestMiddleware: originRequest,
-};
+export const staticMiddlewares = [
+  ...devMiddlewares,
+  slugRewrite,
+  express.static(STATIC_ROOT, {
+    setHeaders: (res) => {
+      res.setHeader("Content-Security-Policy", CSP_VALUE);
+    },
+  }),
+];
+
+export const originRequestMiddleware = originRequest;

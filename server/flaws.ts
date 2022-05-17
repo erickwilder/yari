@@ -133,7 +133,7 @@ function strMapToObject(map) {
   return obj;
 }
 
-module.exports = (req, res) => {
+export default (req, res) => {
   const locale = req.query.locale.toLowerCase();
   if (!locale) {
     return res.status(400).send("'locale' is always required");

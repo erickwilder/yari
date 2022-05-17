@@ -13,13 +13,13 @@ const {
 } = require("../content");
 const kumascript = require("../kumascript");
 
-const { FLAW_LEVELS } = require("./constants");
+export const { FLAW_LEVELS } = require("./constants");
 const {
   extractSections,
   extractSidebar,
   extractSummary,
 } = require("./document-extractor");
-const SearchIndex = require("./search-index");
+export const SearchIndex = require("./search-index");
 const { addBreadcrumbData } = require("./document-utils");
 const { fixFixableFlaws, injectFlaws, injectSectionFlaws } = require("./flaws");
 const { normalizeBCDURLs, extractBCDData } = require("./bcd-urls");
@@ -27,9 +27,9 @@ const { checkImageReferences, checkImageWidths } = require("./check-images");
 const { getPageTitle } = require("./page-title");
 const { syntaxHighlight } = require("./syntax-highlight");
 const { formatNotecards } = require("./format-notecards");
-const buildOptions = require("./build-options");
-const { gather: gatherGitHistory } = require("./git-history");
-const { buildSPAs } = require("./spas");
+export const { default: buildOptions } = require("./build-options");
+export const { gather: gatherGitHistory } = require("./git-history");
+export const { buildSPAs } = require("./spas");
 const { renderCache: renderKumascriptCache } = require("../kumascript");
 const LANGUAGES_RAW = require("../content/languages.json");
 const { safeDecodeURIComponent } = require("../kumascript/src/api/util");
@@ -219,7 +219,7 @@ function getGitHubURL(root, folder, filename) {
  * Return the full URL directly to the last commit affecting this file on GitHub.
  * @param {String} hash - the full hash to point to.
  */
-function getLastCommitURL(root, hash) {
+export function getLastCommitURL(root, hash) {
   const baseURL = `https://github.com/${REPOSITORY_URLS[root]}`;
   return `${baseURL}/commit/${hash}`;
 }
@@ -280,7 +280,7 @@ function getAdjacentImages(documentDirectory) {
     .map((dirent) => path.join(documentDirectory, dirent.name));
 }
 
-async function buildDocument(document, documentOptions = {}) {
+export async function buildDocument(document, documentOptions = {}) {
   // Important that the "local" document options comes last.
   // And use Object.assign to create a new object instead of mutating the
   // global one.
@@ -619,7 +619,7 @@ async function buildDocument(document, documentOptions = {}) {
   return { doc, liveSamples, fileAttachments, bcdData };
 }
 
-async function buildLiveSamplePageFromURL(url) {
+export async function buildLiveSamplePageFromURL(url) {
   // The 'url' is expected to be something
   // like '/en-us/docs/foo/bar/_sample_.myid.html' and from that we want to
   // extract '/en-us/docs/foo/bar' and 'myid'. But only if it matches.
@@ -656,7 +656,10 @@ async function buildLiveSamplePageFromURL(url) {
 // This is used by the builder (yarn build) and by the server (JIT).
 // Someday, this function might change if we decide to include the list
 // of GitHub usernames that have contributed to it since it moved to GitHub.
-function renderContributorsTxt(wikiContributorNames = null, githubURL = null) {
+export function renderContributorsTxt(
+  wikiContributorNames = null,
+  githubURL = null
+) {
   let txt = "";
   if (githubURL) {
     // Always show this first
@@ -667,19 +670,3 @@ function renderContributorsTxt(wikiContributorNames = null, githubURL = null) {
   }
   return txt;
 }
-
-module.exports = {
-  FLAW_LEVELS,
-
-  buildDocument,
-
-  buildLiveSamplePageFromURL,
-  renderContributorsTxt,
-
-  SearchIndex,
-
-  options: buildOptions,
-  gatherGitHistory,
-  buildSPAs,
-  getLastCommitURL,
-};

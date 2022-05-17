@@ -34,7 +34,7 @@ const {
 } = require("./constants");
 const documentRouter = require("./document");
 const fakeV1APIRouter = require("./fake-v1-api");
-const { searchIndexRoute } = require("./search-index");
+export const { searchIndexRoute } = require("./search-index");
 const flawsRoute = require("./flaws");
 const { router: translationsRouter } = require("./translations");
 const { staticMiddlewares, originRequestMiddleware } = require("./middlewares");

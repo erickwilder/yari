@@ -63,7 +63,7 @@ function getFromGit(contentRoot = CONTENT_ROOT) {
   return [map, parents];
 }
 
-function gather(contentRoots, previousFile = null) {
+export function gather(contentRoots, previousFile = null) {
   const map = new Map();
   if (previousFile) {
     const previous = JSON.parse(fs.readFileSync(previousFile, "utf-8"));
@@ -89,7 +89,3 @@ function gather(contentRoots, previousFile = null) {
   }
   return map;
 }
-
-module.exports = {
-  gather,
-};

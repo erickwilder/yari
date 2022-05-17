@@ -626,4 +626,4 @@ router.get("/dashboard", async (req, res) => {
   res.json(data);
 });
 
-module.exports = { router };
+export default { router };

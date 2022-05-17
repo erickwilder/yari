@@ -1,4 +1,4 @@
-const devMiddlewares = [];
+const middlewares = [];
 
 if (process.env.NODE_ENV === "development") {
   /* eslint-disable node/no-unpublished-require */
@@ -19,14 +19,14 @@ if (process.env.NODE_ENV === "development") {
 
   const compiler = webpack(webpackConfig);
 
-  devMiddlewares.push(
+  middlewares.push(
     webpackDevMiddleware(compiler, {
       noInfo: true,
       publicPath: webpackConfig.output.publicPath,
     })
   );
 
-  devMiddlewares.push(
+  middlewares.push(
     webpackHotMiddleware(compiler, {
       path: "/__webpack_hmr",
       heartbeat: 10000,
@@ -34,6 +34,4 @@ if (process.env.NODE_ENV === "development") {
   );
 }
 
-module.exports = {
-  devMiddlewares,
-};
+export const devMiddlewares = middlewares;

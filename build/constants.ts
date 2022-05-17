@@ -1,13 +1,13 @@
-const path = require("path");
+export const path = require("path");
 
 require("dotenv").config({
   path: path.join(__dirname, "..", process.env.ENV_FILE || ".env"),
 });
 
-const BUILD_OUT_ROOT =
+export const BUILD_OUT_ROOT =
   process.env.BUILD_OUT_ROOT || path.join(__dirname, "..", "client", "build");
 
-const FLAW_LEVELS = Object.freeze({
+export const FLAW_LEVELS = Object.freeze({
   ERROR: "error",
   IGNORE: "ignore",
   WARN: "warn",
@@ -21,7 +21,7 @@ const FLAW_LEVELS = Object.freeze({
 //
 // This list needs to be synced with the code. And the CLI arguments
 // used with --flaw-checks needs to match this set.
-const VALID_FLAW_CHECKS = new Set([
+export const VALID_FLAW_CHECKS = new Set([
   "macros",
   "broken_links",
   "bad_bcd_queries",
@@ -36,45 +36,29 @@ const VALID_FLAW_CHECKS = new Set([
 ]);
 
 // TODO (far future): Switch to "error" when number of flaws drops.
-const DEFAULT_FLAW_LEVELS = process.env.BUILD_FLAW_LEVELS || "*:warn";
+export const DEFAULT_FLAW_LEVELS = process.env.BUILD_FLAW_LEVELS || "*:warn";
 
-const FILES = process.env.BUILD_FILES || "";
-const FOLDERSEARCH = process.env.BUILD_FOLDERSEARCH || "";
-const GOOGLE_ANALYTICS_ACCOUNT =
+export const FILES = process.env.BUILD_FILES || "";
+export const FOLDERSEARCH = process.env.BUILD_FOLDERSEARCH || "";
+export const GOOGLE_ANALYTICS_ACCOUNT =
   process.env.BUILD_GOOGLE_ANALYTICS_ACCOUNT || "";
-const GOOGLE_ANALYTICS_DEBUG = JSON.parse(
+export const GOOGLE_ANALYTICS_DEBUG = JSON.parse(
   process.env.BUILD_GOOGLE_ANALYTICS_DEBUG || "false"
 );
-const NO_PROGRESSBAR = Boolean(
+export const NO_PROGRESSBAR = Boolean(
   JSON.parse(process.env.BUILD_NO_PROGRESSBAR || process.env.CI || "false")
 );
-const FIX_FLAWS = JSON.parse(process.env.BUILD_FIX_FLAWS || "false");
-const FIX_FLAWS_DRY_RUN = JSON.parse(
+export const FIX_FLAWS = JSON.parse(process.env.BUILD_FIX_FLAWS || "false");
+export const FIX_FLAWS_DRY_RUN = JSON.parse(
   process.env.BUILD_FIX_FLAWS_DRY_RUN || "false"
 );
-const FIX_FLAWS_VERBOSE = JSON.parse(
+export const FIX_FLAWS_VERBOSE = JSON.parse(
   // It's on by default because it's such a sensible option to always have
   // on.
   process.env.BUILD_FIX_FLAWS_VERBOSE || "true"
 );
 
 // See explanation in docs/envvars.md
-const ALWAYS_ALLOW_ROBOTS = JSON.parse(
+export const ALWAYS_ALLOW_ROBOTS = JSON.parse(
   process.env.BUILD_ALWAYS_ALLOW_ROBOTS || "false"
 );
-
-module.exports = {
-  BUILD_OUT_ROOT,
-  DEFAULT_FLAW_LEVELS,
-  FILES,
-  FLAW_LEVELS,
-  FOLDERSEARCH,
-  GOOGLE_ANALYTICS_ACCOUNT,
-  GOOGLE_ANALYTICS_DEBUG,
-  NO_PROGRESSBAR,
-  VALID_FLAW_CHECKS,
-  FIX_FLAWS,
-  FIX_FLAWS_DRY_RUN,
-  FIX_FLAWS_VERBOSE,
-  ALWAYS_ALLOW_ROBOTS,
-};

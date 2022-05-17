@@ -4,7 +4,7 @@ const path = require("path");
 // Module-level cache
 const popularities = new Map();
 
-function getPopularities() {
+export function getPopularities() {
   if (!popularities.size) {
     // This is the file that's *not* checked into git.
     const filePath = path.resolve(
@@ -18,5 +18,3 @@ function getPopularities() {
   }
   return popularities;
 }
-
-module.exports = { getPopularities };
