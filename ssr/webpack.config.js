@@ -5,7 +5,7 @@ const webpack = require("webpack");
 
 module.exports = {
   context: path.resolve(__dirname, "."),
-  entry: "./index.js",
+  entry: "./index.ts",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
