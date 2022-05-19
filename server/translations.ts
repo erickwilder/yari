@@ -1,3 +1,5 @@
+import { LanguageItem } from "../client/src/document/types";
+
 const fs = require("fs");
 const path = require("path");
 
@@ -16,7 +18,11 @@ const {
 } = require("../content");
 const { getLastCommitURL } = require("../build");
 const { ACTIVE_LOCALES, DEFAULT_LOCALE } = require("../libs/constants");
-const LANGUAGES_RAW = require("../content/languages.json");
+
+const LANGUAGES_RAW = require("../content/languages.json") as Record<
+  string,
+  LanguageItem
+>;
 
 // Module-level cache
 const allPopularityValues = [];

@@ -1,9 +1,14 @@
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import LANGUAGES_RAW from "../languages.json";
+import { LanguageItem } from "../document/types";
 
 import { useLocale } from "../hooks";
 import { appendURL } from "./utils";
+
+const LANGUAGES_RAW = require("../languages.json") as Record<
+  string,
+  LanguageItem
+>;
 
 const LANGUAGES = new Map(
   Object.entries(LANGUAGES_RAW).map(([locale, data]) => {
