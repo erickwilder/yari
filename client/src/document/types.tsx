@@ -146,6 +146,8 @@ export interface Doc {
   hasMathML?: boolean;
   isMarkdown: boolean;
   summary: string;
+  // Used for search.
+  popularity?: number;
 }
 
 export type Section = ProseSection | SpecificationsSection | BCDSection;

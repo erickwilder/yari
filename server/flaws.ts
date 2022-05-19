@@ -1,4 +1,5 @@
 import { Doc } from "../client/src/document/types";
+import { FlawFilters } from "./types";
 
 const fs = require("fs");
 const path = require("path");
@@ -140,7 +141,7 @@ export default (req, res) => {
   if (!locale) {
     return res.status(400).send("'locale' is always required");
   }
-  const filters = req.query;
+  const filters = req.query as FlawFilters;
 
   let page;
   try {
@@ -206,11 +207,12 @@ export default (req, res) => {
 
   let searchFlaws = new Map();
   if (filters.search_flaws) {
-    if (Array.isArray(filters.search_flaws)) {
-      searchFlaws = new Map(filters.search_flaws.map((x) => x.split(":", 2)));
-    } else {
-      searchFlaws = new Map([filters.search_flaws].map((x) => x.split(":", 2)));
-    }
+    const items = Array.isArray(filters.search_flaws)
+      ? filters.search_flaws
+      : [filters.search_flaws];
+    searchFlaws = new Map(
+      items.map((x) => x.split(":", 2) as [string, string])
+    );
   }
 
   const api = new fdir()
