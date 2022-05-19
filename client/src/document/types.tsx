@@ -144,6 +144,7 @@ export interface Doc {
   isActive: boolean;
   hasMathML?: boolean;
   isMarkdown: boolean;
+  summary: string;
 }
 
 export type Section = ProseSection | SpecificationsSection | BCDSection;
