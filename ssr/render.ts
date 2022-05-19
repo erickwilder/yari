@@ -115,6 +115,16 @@ function* extractCSSURLs(css, filterFunction) {
   }
 }
 
+interface HydrationData {
+  doc?: any;
+  pageNotFound?: boolean;
+  hyData?: any;
+  pageTitle?: any;
+  possibleLocales?: any;
+  locale?: any;
+  noIndexing?: any;
+}
+
 export default function render(
   renderApp,
   {
@@ -125,7 +135,7 @@ export default function render(
     possibleLocales = null,
     locale = null,
     noIndexing = null,
-  } = {}
+  }: HydrationData = {}
 ) {
   const buildHtml = readBuildHTML();
   const webfontURLs = extractWebFontURLs();
@@ -144,7 +154,7 @@ export default function render(
 
   let pageDescription = "";
 
-  const hydrationData = {};
+  const hydrationData: HydrationData = {};
   if (pageNotFound) {
     pageTitle = `🤷🏽‍♀️ Page not found | ${pageTitle}`;
     hydrationData.pageNotFound = true;
@@ -263,7 +273,7 @@ export default function render(
   // Move the script tags from the body to the head.
   // That way the browser can notice, and start downloading these files sooner
   // but they'll still be executed after the first render.
-  $("body script[src]").appendTo("head");
+  $("body script[src]").appendTo($("head"));
   $("body script[src]").remove();
 
   return $.html();
