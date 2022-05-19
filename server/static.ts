@@ -1,4 +1,4 @@
-const path = require("path");
+import path from "path";
 
 const express = require("express");
 const compression = require("compression");

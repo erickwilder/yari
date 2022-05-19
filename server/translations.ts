@@ -626,4 +626,4 @@ router.get("/dashboard", async (req, res) => {
   res.json(data);
 });
 
-export default { router };
+export default router;

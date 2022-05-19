@@ -8,8 +8,8 @@ export const {
   HTML_FILENAME,
   MARKDOWN_FILENAME,
 } = require("./constants");
-export const Document = require("./document");
-export const Translation = require("./translation");
+export * as Document from "./document";
+export * as Translation from "./translation";
 export const { getPopularities } = require("./popularities");
 export const Redirect = require("./redirect");
 export const Image = require("./image");

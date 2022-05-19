@@ -9,7 +9,7 @@ const {
   CONTENT_TRANSLATED_ROOT,
   VALID_LOCALES,
 } = require("../content");
-const { SearchIndex } = require("../build");
+import { SearchIndex } from "../build";
 
 function populateSearchIndex(searchIndex, localeLC) {
   const root = path.join(

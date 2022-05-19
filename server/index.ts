@@ -25,20 +25,21 @@ import {
 const { renderHTML } = require("../ssr/dist/main");
 const { CSP_VALUE, DEFAULT_LOCALE } = require("../libs/constants");
 
-const {
+import {
   STATIC_ROOT,
   PROXY_HOSTNAME,
   FAKE_V1_API,
   CONTENT_HOSTNAME,
   OFFLINE_CONTENT,
-} = require("./constants");
-const documentRouter = require("./document");
-const fakeV1APIRouter = require("./fake-v1-api");
-export const { searchIndexRoute } = require("./search-index");
-const flawsRoute = require("./flaws");
-const { router: translationsRouter } = require("./translations");
-const { staticMiddlewares, originRequestMiddleware } = require("./middlewares");
-const { getRoot } = require("../content/utils");
+} from "./constants";
+import documentRouter from "./document";
+import fakeV1APIRouter from "./fake-v1-api";
+import { searchIndexRoute } from "./search-index";
+export { searchIndexRoute } from "./search-index";
+import flawsRoute from "./flaws";
+import translationsRouter from "./translations";
+import { staticMiddlewares, originRequestMiddleware } from "./middlewares";
+import { getRoot } from "../content/utils";
 
 async function buildDocumentFromURL(url: string) {
   const document = Document.findByURL(url);
