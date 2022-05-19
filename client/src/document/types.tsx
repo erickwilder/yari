@@ -14,6 +14,7 @@ export interface GenericFlaw {
   fixable?: boolean;
   fixed?: true;
   externalImage?: boolean;
+  name?: string;
 }
 
 export interface BrokenLink extends GenericFlaw {
