@@ -76,7 +76,7 @@ function validFixableFlawsFilter(value) {
     } else if (value.startsWith(">")) {
       filter = { min: parseInt(value.slice(1).trim()) };
     } else {
-      filter = { equal: parseInt(parseInt(value)) };
+      filter = { equal: parseInt(value) };
     }
   }
   return [filter, null];
